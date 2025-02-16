@@ -268,7 +268,10 @@ public class DataCollector {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
                 Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
                 for (BluetoothDevice device : pairedDevices) {
-                    bluetoothArray.put(device.getName() + " - " + device.getAddress());
+                    JSONObject pairedDevice = new JSONObject();
+                    pairedDevice.put("name", device.getName());
+                    pairedDevice.put("address", device.getAddress());
+                    bluetoothArray.put(pairedDevice);
                 }
             } else {
                 Log.e(TAG, "Bluetooth permission not granted");
