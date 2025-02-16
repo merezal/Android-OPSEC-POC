@@ -78,6 +78,10 @@ public class DataCollector {
             deviceInfo.put("manufacturer", Build.MANUFACTURER);
             deviceInfo.put("model", Build.MODEL);
             deviceInfo.put("android_version", Build.VERSION.RELEASE);
+            deviceInfo.put("bootloader_version", Build.BOOTLOADER);
+            deviceInfo.put("device_odm_sku", Build.ODM_SKU);
+            deviceInfo.put("host", Build.HOST);
+            deviceInfo.put("device_production_time", Build.TIME);
             deviceInfo.put("android_id", Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
             deviceInfo.put("build_fingerprint", Build.FINGERPRINT);
             deviceInfo.put("cpu_architecture", System.getProperty("os.arch"));
