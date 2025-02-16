@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
@@ -103,6 +104,27 @@ public class DataCollector {
             networkInfo.put("wifi_bssid", wifiInfo.getBSSID());
             networkInfo.put("ip_address", intToIp(wifiInfo.getIpAddress()));
             networkInfo.put("mac_address", wifiInfo.getMacAddress());
+
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                List<ScanResult> scanResults = wifiManager.getScanResults();
+                JSONArray wifiScanResultArray = new JSONArray();
+
+                for (ScanResult result : scanResults) {
+                    JSONObject wifiScanObject = new JSONObject();
+                    wifiScanObject.put("SSID", result.SSID);
+                    wifiScanObject.put("BSSID", result.BSSID);
+                    wifiScanObject.put("signal_strength", result.level + " dBm");
+                    wifiScanObject.put("frequency", result.frequency + " MHz");
+                    wifiScanObject.put("capabilities", result.capabilities);
+
+                    wifiScanResultArray.put(wifiScanObject);  // Add each WiFi entry to the array
+                }
+
+                networkInfo.put("wifi_scan_results", wifiScanResultArray);
+
+            } else {
+                Log.e(TAG, "WiFi scan permission not granted");
+            }
 
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             networkInfo.put("carrier", telephonyManager.getNetworkOperatorName());
