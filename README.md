@@ -25,7 +25,7 @@ Evil Webview is an Android application that uses WebView to display web content 
 
 ### 📱 Android
 
-1. Clone the Repository
+1. Clone the Repository ```git clone https://github.com/merezal/Android-OPSEC-POC```
 
 2. Open in Android Studio
 
@@ -43,9 +43,12 @@ Evil Webview is an Android application that uses WebView to display web content 
 
 The server listens for incoming connections and securely decrypts received data.
 
-1. Start the Python server: ```python server.py```
+1. Create python virtual environment if one hasn't already been created. ```python -m venv env```
+2. Activate python the virtual environment. ```source env/bin/activate```
+3. Install dependencies to the python virtual environment. ```pip install -r requirements.txt```
+4. Start the Python server: ```python server.py```
 
-3. Ensure port 4444 is open for inbound connections. Data is named by timestamp and stored as JSON in a local ```/data``` directory.
+5. Ensure port 4444 is open for inbound connections. Data is named by timestamp and stored as JSON in a local ```/data``` directory.
 
 ## 🔐 Security & Data Collection
 

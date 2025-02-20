@@ -35,3 +35,8 @@ Thumbs.db
 
 # Log files
 *.log
+
+# Python virtual environments
+venv/
+env/
+.env/
