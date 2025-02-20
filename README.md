@@ -25,7 +25,7 @@ Evil Webview is an Android application that uses WebView to display web content 
 
 ### 📱 Android
 
-1. Clone the Repository
+1. Clone the Repository ```git clone https://github.com/merezal/Android-OPSEC-POC```
 
 2. Open in Android Studio
 
